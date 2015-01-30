@@ -124,8 +124,13 @@ exports.getParentModule = function(dir){
 
 exports.askForModule = function(type,that,cb){
 
+    var app = 'app.js';
+    if (that.config.get('mainModule')) {
+        app = that.config.get('mainModule');
+    }
+
     var modules = that.config.get('modules');
-    var mainModule = ngParseModule.parse('app.js');
+    var mainModule = ngParseModule.parse(app);
     mainModule.primary = true;
 
     if (!modules || modules.length === 0) {
